@@ -25,6 +25,7 @@
 #include "mc/server/ServerPlayer.h"
 #include "mc/util/VarIntDataOutput.h"
 #include "mc/world/actor/SynchedActorDataEntityWrapper.h"
+#include "mc/world/actor/components/SynchedActorDataAccess.h"
 #include "mc/world/level/ChangeDimensionRequest.h"
 #include "mc/world/level/Level.h"
 #include "mc/world/level/dimension/VanillaDimensions.h"
@@ -355,8 +356,7 @@ LL_TYPE_INSTANCE_HOOK(
         }
         fakeDimensionId.onPlayerLeftCustomDimension(uuid, true);
         // flash player bounding box
-        player->getEntityData().markDirty(std::to_underlying(ActorDataIDs::Width));
-        player->getEntityData().markDirty(std::to_underlying(ActorDataIDs::Height));
+        player->getEntityData().markDirty(std::to_underlying(ActorDataIDs::CollisionBox));
     }
     return origin(netId, packet);
 };
