@@ -4,10 +4,10 @@
 #include "ll/api/Config.h"
 #include "ll/api/Logger.h"
 #include "ll/api/service/Bedrock.h"
+#include "mc/server/common/PropertiesSettings.h"
 #include "mc/world/level/Level.h"
 #include "mc/world/level/LevelSeed64.h"
 #include "mc/world/level/storage/LevelData.h"
-
 
 namespace more_dimensions::CustomDimensionConfig {
 
@@ -19,7 +19,7 @@ void setDimensionConfigPath() {
     if (!ll::service::getLevel()) {
         throw std::runtime_error("Level nullptr");
     }
-    dimensionConfigPath /= ll::string_utils::str2u8str(ll::service::getLevel()->getLevelData().getLevelName());
+    dimensionConfigPath /= ll::string_utils::str2u8str(ll::service::getPropertiesSettings()->getLevelName());
     dimensionConfigPath /= u8"dimension_config.json";
 }
 
